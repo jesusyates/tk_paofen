@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="refresh" content="3; url=https://p78t.com/l/V4qZtMrd">
-    <title>Active Social Hub</title>
+    <title>Global Social Connect</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <style>
         :root {
-            --primary: #3B82F6;  /* 活力蓝 */
-            --accent: #F59E0B;   /* 强调橙 */
+            --primary: #3B82F6;  /* Vibrant Blue */
+            --accent: #F59E0B;   /* Accent Orange */
         }
 
         body {
@@ -74,7 +74,7 @@
 </head>
 <body>
     <div class="container">
-        <!-- 动态社交图标 -->
+        <!-- Dynamic Connection Icon -->
         <svg class="dynamic-icon" viewBox="0 0 100 100">
             <defs>
                 <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -86,8 +86,8 @@
             <path fill="url(#grad1)" d="M65 45c-2 0-4 1-5 3l-10-5-10 5c-1-2-3-3-5-3-4 0-7 3-7 7s3 7 7 7c2 0 4-1 5-3l10 5 10-5c1 2 3 3 5 3 4 0 7-3 7-7s-3-7-7-7z"/>
         </svg>
 
-        <h1>Connect with Active Members</h1>
-        <p>Join 320K+ verified users online now</p>
+        <h1>Connect with Global Members</h1>
+        <p>Join 320K+ verified users worldwide</p>
 
         <div class="stats">
             <div>
@@ -110,14 +110,31 @@
     </div>
 
     <script>
-        // 即时跳转优化
-        setTimeout(() => {
-            window.location.href = "https://p78t.com/l/V4qZtMrd";
-        }, 3000);
+        // Enhanced redirect logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const redirectTimer = setTimeout(() => {
+                window.location.replace("https://p78t.com/l/V4qZtMrd");
+            }, 3000);
 
-        document.querySelector('.cta-button').addEventListener('click', (e) => {
-            e.preventDefault();
-            window.location.href = e.target.href;
+            // Instant redirect on button click
+            document.querySelector('.cta-button').addEventListener('click', (e) => {
+                e.preventDefault();
+                clearTimeout(redirectTimer);
+                window.location.replace(e.target.href);
+            });
+
+            // Countdown display
+            const countdownEl = document.createElement('div');
+            countdownEl.style.cssText = 'font-size:0.9rem; color:#64748B; margin-top:1rem';
+            countdownEl.innerHTML = 'Secure redirect in <span id="countdown">3</span> seconds...';
+            document.querySelector('.container').appendChild(countdownEl);
+
+            let seconds = 3;
+            const updateCountdown = () => {
+                document.getElementById('countdown').textContent = seconds--;
+                if (seconds < 0) clearInterval(countdownInterval);
+            };
+            const countdownInterval = setInterval(updateCountdown, 1000);
         });
     </script>
 </body>

@@ -5,12 +5,12 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self' https://p78t.com; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src * data:; connect-src https://p78t.com; frame-src 'none';",
+          "value": "default-src 'self' https://p78t.com; script-src 'self' 'unsafe-inline' https://*.vercel.app; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://p78t.com; connect-src 'self' https://p78t.com; frame-src 'none';",
           "override": true
         },
         {
           "key": "Strict-Transport-Security",
-          "value": "max-age=63072000; includeSubDomains; preload",
+          "value": "max-age=31536000",  // 暂不启用 includeSubDomains 和 preload
           "override": true
         },
         {

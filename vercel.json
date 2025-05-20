@@ -10,7 +10,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self' https://p78t.com https:; img-src https: data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+          "value": "default-src 'self' https://p78t.com https:; img-src https: data:; script-src 'self' 'unsafe-inline'"
         },
         {
           "key": "X-Content-Type-Options",

@@ -1,4 +1,5 @@
 {
+  "version": 2,
   "headers": [
     {
       "source": "/(.*)",
@@ -17,7 +18,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self' https://p78t.com https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https: https://p78t.com;"
+          "value": "default-src 'self' https://p78t.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://p78t.com;"
         }
       ]
     }
@@ -27,7 +28,12 @@
       "source": "/:path*",
       "destination": "https://good.queenmeet.vip/:path*",
       "permanent": true,
-      "statusCode": 308
+      "has": [
+        {
+          "type": "host",
+          "value": "good.queenmeet.vip"
+        }
+      ]
     }
   ]
 }

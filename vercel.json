@@ -9,16 +9,16 @@
           "value": "max-age=63072000; includeSubDomains; preload"
         },
         {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self' https://p78t.com https:; img-src https: data:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'"
+        },
+        {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
         },
         {
           "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self' https: 'unsafe-inline' 'unsafe-eval'"
+          "value": "DENY"
         },
         {
           "key": "Referrer-Policy",
@@ -33,15 +33,6 @@
       "destination": "https://good.queenmeet.vip",
       "permanent": true,
       "statusCode": 308
-    }
-  ],
-  "routes": [
-    {
-      "src": "/.*",
-      "dest": "/index.html",
-      "headers": {
-        "Cache-Control": "public, max-age=3600, s-maxage=86400"
-      }
     }
   ]
 }

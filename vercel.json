@@ -4,7 +4,6 @@
     {
       "source": "/(.*)",
       "headers": [
-        // ========== 核心安全标头 ==========
         {
           "key": "Strict-Transport-Security",
           "value": "max-age=63072000; includeSubDomains; preload"
@@ -21,21 +20,14 @@
           "key": "X-Content-Type-Options",
           "value": "nosniff"
         },
-
-        // ========== 增强安全标头 ==========
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "geolocation=(), microphone=(), camera=()"
         }
       ]
     }
   ],
   "redirects": [
-    // ========== 全局HTTP到HTTPS重定向 ==========
     {
       "source": "/:path*",
       "destination": "https://good.queenmeet.vip/:path*",
@@ -43,7 +35,6 @@
     }
   ],
   "routes": [
-    // ========== 缓存优化配置 ==========
     {
       "src": "/.*",
       "dest": "/index.html",

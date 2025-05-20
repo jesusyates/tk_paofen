@@ -6,7 +6,11 @@
       "headers": [
         {
           "key": "Strict-Transport-Security",
-          "value": "max-age=31536000; preload"
+          "value": "max-age=63072000; includeSubDomains; preload"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self' https://p78t.com https:; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://p78t.com https:;"
         },
         {
           "key": "X-Frame-Options",
@@ -15,10 +19,6 @@
         {
           "key": "X-Content-Type-Options",
           "value": "nosniff"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self' https://p78t.com; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://p78t.com;"
         }
       ]
     }
@@ -28,12 +28,7 @@
       "source": "/:path*",
       "destination": "https://good.queenmeet.vip/:path*",
       "permanent": true,
-      "has": [
-        {
-          "type": "host",
-          "value": "good.queenmeet.vip"
-        }
-      ]
+      "statusCode": 308
     }
   ]
 }

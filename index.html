@@ -2,139 +2,129 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="3; url=https://p78t.com/l/B6J09gkL">
-    <title>Global Social Connect</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <title>Global Social Connect - Adults Only</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <style>
         :root {
-            --primary: #3B82F6;  /* Vibrant Blue */
-            --accent: #F59E0B;   /* Accent Orange */
+            --primary: #4361ee;
+            --accent: #f72585;
+            --text: #2b2d42;
+            --bg: #f8f9fa;
+            --card: #ffffff;
         }
-
-        body {
-            font-family: -apple-system, sans-serif;
-            background: #F8FAFC;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
             padding: 20px;
-            height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
+            align-items: center;
         }
-
-        .container {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        .card {
+            background: var(--card);
+            width: 100%;
             max-width: 400px;
-            margin: 0 auto;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
             text-align: center;
-            position: relative;
-            overflow: hidden;
         }
-
-        .dynamic-icon {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1rem;
-            animation: pulse 2s infinite;
+        /* 超大18禁图标 */
+        .adults-only {
+            font-size: 80px;
+            line-height: 1;
+            margin: 0 auto 20px;
+            animation: pulse 1.5s infinite;
+            display: inline-block;
         }
-
-        .cta-button {
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        .warning-text {
+            color: #f72585;
+            font-weight: bold;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .btn {
             display: block;
-            padding: 1rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
             color: white !important;
+            padding: 16px;
             border-radius: 12px;
             text-decoration: none;
-            margin: 1.5rem 0;
-            transition: transform 0.3s;
             font-weight: 600;
-            letter-spacing: 0.5px;
+            margin: 25px 0;
+            border: none;
+            width: 100%;
+            transition: transform 0.2s;
         }
-
-        .cta-button:hover {
-            transform: scale(1.05);
+        .btn:active {
+            transform: scale(0.98);
         }
-
         .stats {
             display: flex;
             justify-content: space-around;
-            margin: 1rem 0;
-            color: var(--primary);
+            margin: 30px 0;
         }
-
-        @keyframes pulse {
-            0% { transform: scale(0.95); }
-            50% { transform: scale(1); }
-            100% { transform: scale(0.95); }
+        .stat strong {
+            display: block;
+            font-size: 24px;
+            color: var(--primary);
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Dynamic Connection Icon -->
-        <svg class="dynamic-icon" viewBox="0 0 100 100">
-            <defs>
-                <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
-                    <stop offset="100%" style="stop-color:#F59E0B;stop-opacity:1" />
-                </linearGradient>
-            </defs>
-            <circle cx="50" cy="50" r="45" fill="none" stroke="url(#grad1)" stroke-width="3"/>
-            <path fill="url(#grad1)" d="M65 45c-2 0-4 1-5 3l-10-5-10 5c-1-2-3-3-5-3-4 0-7 3-7 7s3 7 7 7c2 0 4-1 5-3l10 5 10-5c1 2 3 3 5 3 4 0 7-3 7-7s-3-7-7-7z"/>
-        </svg>
+    <div class="card">
+        <!-- 超大18禁emoji -->
+        <div class="adults-only" aria-label="Adults only">🔞</div>
+        
+        <!-- 简洁警告文字 -->
+        <div class="warning-text">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f72585">
+                <path d="M12 2L1 21h22L12 2zm0 4l7.53 13H4.47L12 6z"/>
+            </svg>
+            ADULTS 18+ ONLY
+        </div>
 
-        <h1>Connect with Global Members</h1>
-        <p>Join 320K+ verified users worldwide</p>
-
+        <h1>Date a beautiful woman in the neighbourhood</h1>
+        
+        <div style="margin: 30px 0;"></div>
+        
+        <p class="subtitle">Join 320,000+ verified users worldwide</p>
+        
         <div class="stats">
-            <div>
-                <div style="font-size:1.5em;font-weight:bold">15K+</div>
-                <div>Daily Connections</div>
+            <div class="stat">
+                <strong>15K+</strong>
+                <span>Daily Connections</span>
             </div>
-            <div>
-                <div style="font-size:1.5em;font-weight:bold">92%</div>
-                <div>Positive Feedback</div>
+            <div class="stat">
+                <strong>92%</strong>
+                <span>Positive Feedback</span>
             </div>
         </div>
-
-        <a href="https://p78t.com/l/GMpaWvNj" class="cta-button">
-            Join Free Now →
+        
+        <a href="https://y29v.com/l/0ZGawsyM" class="btn" id="entryBtn">
+           Enter Now →
         </a>
-
-        <div style="font-size:0.8rem;color:#64748B;margin-top:1rem">
-            Secure platform • 18+ only • GDPR compliant
-        </div>
     </div>
 
+    <!-- 直接跳转无确认 -->
     <script>
-        // Enhanced redirect logic
-        document.addEventListener('DOMContentLoaded', () => {
-            const redirectTimer = setTimeout(() => {
-                window.location.replace("https://p78t.com/l/B6J09gkL");
-            }, 3000);
-
-            // Instant redirect on button click
-            document.querySelector('.cta-button').addEventListener('click', (e) => {
-                e.preventDefault();
-                clearTimeout(redirectTimer);
-                window.location.replace(e.target.href);
-            });
-
-            // Countdown display
-            const countdownEl = document.createElement('div');
-            countdownEl.style.cssText = 'font-size:0.9rem; color:#64748B; margin-top:1rem';
-            countdownEl.innerHTML = 'Secure redirect in <span id="countdown">3</span> seconds...';
-            document.querySelector('.container').appendChild(countdownEl);
-
-            let seconds = 3;
-            const updateCountdown = () => {
-                document.getElementById('countdown').textContent = seconds--;
-                if (seconds < 0) clearInterval(countdownInterval);
-            };
-            const countdownInterval = setInterval(updateCountdown, 1000);
+        document.getElementById('entryBtn').addEventListener('click', function(e) {
+            // 可在此添加追踪代码
+            // analytics.track('Adult Content Access');
         });
     </script>
 </body>

@@ -32,14 +32,27 @@
             text-align: center;
         }
         
-        .avatar {
+        .avatar-container {
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            object-fit: cover;
+            margin: 0 auto 20px;
             border: 4px solid white;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
+            overflow: hidden;
+            background: linear-gradient(135deg, #FF9E5E, #FF7A19);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .avatar {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none; /* 默认隐藏，等加载成功后再显示 */
         }
         
         .title {
@@ -58,15 +71,28 @@
             margin-right: auto;
         }
         
-        .rectangle-image {
+        .image-container {
             width: 100%;
             max-width: 320px;
             height: 180px;
             border-radius: 16px;
-            object-fit: cover;
             margin: 0 auto 25px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
             border: 3px solid white;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            background: linear-gradient(135deg, #FF9E5E, #FF7A19);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .rectangle-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none; /* 默认隐藏，等加载成功后再显示 */
         }
         
         .links {
@@ -115,43 +141,12 @@
             z-index: -1;
         }
         
-        .image-placeholder {
-            width: 100%;
-            max-width: 320px;
-            height: 180px;
-            border-radius: 16px;
-            margin: 0 auto 25px;
-            background: linear-gradient(135deg, #FF9E5E, #FF7A19);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            border: 3px solid white;
-        }
-        
-        .avatar-placeholder {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 20px;
-            background: linear-gradient(135deg, #FF9E5E, #FF7A19);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            border: 4px solid white;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-        
         @media (max-width: 480px) {
             .container {
                 padding: 0 15px;
             }
             
-            .avatar {
+            .avatar-container {
                 width: 100px;
                 height: 100px;
             }
@@ -164,7 +159,7 @@
                 font-size: 14px;
             }
             
-            .rectangle-image {
+            .image-container {
                 height: 160px;
             }
         }
@@ -174,19 +169,19 @@
     <div class="background"></div>
     
     <div class="container">
-        <!-- 头像 - 使用 images 文件夹中的图片 -->
-        <div class="avatar-placeholder">
-            <img src="images/1.jpg" alt="Profile" class="avatar" onerror="handleImageError(this, 'avatar')">
-            <span style="display:none;">MA</span>
+        <!-- 头像容器 -->
+        <div class="avatar-container" id="avatarContainer">
+            <span id="avatarText">Avatar</span>
+            <img src="" alt="Profile" class="avatar" id="avatarImg">
         </div>
         
         <h1 class="title">macao99</h1>
         <p class="subtitle">My private video space</p>
         
-        <!-- 内容图片 - 使用 images 文件夹中的图片 -->
-        <div class="image-placeholder">
-            <img src="images/2.jpg" alt="Content" class="rectangle-image" onerror="handleImageError(this, 'content')">
-            <span style="display:none;">Featured</span>
+        <!-- 内容图片容器 -->
+        <div class="image-container" id="imageContainer">
+            <span id="imageText">Featured</span>
+            <img src="" alt="Content" class="rectangle-image" id="contentImg">
         </div>
         
         <div class="links">
@@ -199,59 +194,77 @@
     </div>
 
     <script>
-        // 图片错误处理函数
-        function handleImageError(img, type) {
-            console.log(`${type} image failed to load:`, img.src);
-            const placeholder = img.closest(type === 'avatar' ? '.avatar-placeholder' : '.image-placeholder');
-            if (placeholder) {
-                placeholder.querySelector('span').style.display = 'block';
-                img.style.display = 'none';
-            }
-            
-            // 尝试备用图片路径
-            setTimeout(() => {
-                const fileName = img.src.split('/').pop();
-                img.src = `./images/${fileName}`; // 尝试相对路径
-            }, 100);
-        }
-        
-        // 图片加载成功处理
-        function handleImageLoad(img, type) {
-            console.log(`${type} image loaded successfully:`, img.src);
-            const placeholder = img.closest(type === 'avatar' ? '.avatar-placeholder' : '.image-placeholder');
-            if (placeholder) {
-                placeholder.querySelector('span').style.display = 'none';
-            }
-        }
-        
         document.addEventListener('DOMContentLoaded', function() {
-            // 设置图片加载事件
-            const avatarImg = document.querySelector('.avatar');
-            const contentImg = document.querySelector('.rectangle-image');
-            
-            if (avatarImg) {
-                avatarImg.onload = () => handleImageLoad(avatarImg, 'avatar');
-                // 如果图片已经加载完成（缓存）
-                if (avatarImg.complete) {
-                    handleImageLoad(avatarImg, 'avatar');
+            // 图片路径配置
+            const imageConfig = {
+                avatar: {
+                    container: document.getElementById('avatarContainer'),
+                    img: document.getElementById('avatarImg'),
+                    text: document.getElementById('avatarText'),
+                    paths: [
+                        'images/1.jpg',
+                        './images/1.jpg',
+                        '1.jpg',
+                        './1.jpg'
+                    ]
+                },
+                content: {
+                    container: document.getElementById('imageContainer'),
+                    img: document.getElementById('contentImg'),
+                    text: document.getElementById('imageText'),
+                    paths: [
+                        'images/2.jpg',
+                        './images/2.jpg',
+                        '2.jpg',
+                        './2.jpg'
+                    ]
                 }
+            };
+            
+            // 加载图片函数
+            function loadImage(imageType) {
+                const config = imageConfig[imageType];
+                let currentPathIndex = 0;
+                
+                function tryNextPath() {
+                    if (currentPathIndex >= config.paths.length) {
+                        console.log(`All paths failed for ${imageType} image`);
+                        // 所有路径都失败，显示占位文本
+                        config.text.style.display = 'block';
+                        config.img.style.display = 'none';
+                        return;
+                    }
+                    
+                    const path = config.paths[currentPathIndex];
+                    console.log(`Trying to load ${imageType} image from: ${path}`);
+                    
+                    config.img.src = path;
+                    config.img.onload = function() {
+                        console.log(`Successfully loaded ${imageType} image from: ${path}`);
+                        config.text.style.display = 'none';
+                        config.img.style.display = 'block';
+                    };
+                    
+                    config.img.onerror = function() {
+                        console.log(`Failed to load ${imageType} image from: ${path}`);
+                        currentPathIndex++;
+                        setTimeout(tryNextPath, 100);
+                    };
+                }
+                
+                tryNextPath();
             }
             
-            if (contentImg) {
-                contentImg.onload = () => handleImageLoad(contentImg, 'content');
-                // 如果图片已经加载完成（缓存）
-                if (contentImg.complete) {
-                    handleImageLoad(contentImg, 'content');
-                }
-            }
+            // 加载两张图片
+            loadImage('avatar');
+            loadImage('content');
             
-            // 调试信息
-            console.log('Current file structure:');
-            console.log('- index.html');
-            console.log('- images/');
-            console.log('  - 1.jpg (avatar)');
-            console.log('  - 2.jpg (content)');
-            console.log('  - ... other numbered images');
+            // 调试：输出当前目录结构
+            console.log('Expected file structure:');
+            console.log('├── index.html');
+            console.log('└── images/');
+            console.log('    ├── 1.jpg');
+            console.log('    └── 2.jpg');
         });
     </script>
 </body>

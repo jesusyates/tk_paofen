@@ -6,7 +6,6 @@
     <title>macao99 | Personal Page</title>
     <meta name="description" content="Welcome to my personal page">
     <style>
-        /* 基础样式重置 */
         * {
             margin: 0;
             padding: 0;
@@ -26,7 +25,6 @@
             padding: 20px;
         }
         
-        /* 容器样式 */
         .container {
             width: 100%;
             max-width: 400px;
@@ -34,7 +32,6 @@
             text-align: center;
         }
         
-        /* 头像样式 */
         .avatar {
             width: 120px;
             height: 120px;
@@ -45,7 +42,6 @@
             margin-bottom: 20px;
         }
         
-        /* 标题样式 */
         .title {
             font-size: 24px;
             font-weight: 700;
@@ -62,7 +58,6 @@
             margin-right: auto;
         }
         
-        /* 矩形图片样式 */
         .rectangle-image {
             width: 100%;
             max-width: 320px;
@@ -74,7 +69,6 @@
             border: 3px solid white;
         }
         
-        /* 链接按钮样式 */
         .links {
             width: 100%;
             display: flex;
@@ -105,18 +99,12 @@
             background-color: #f0f0f0;
         }
         
-        .link-button:active {
-            transform: translateY(-1px);
-        }
-        
-        /* 页脚样式 */
         .footer {
             margin-top: 20px;
             color: rgba(255, 255, 255, 0.7);
             font-size: 14px;
         }
         
-        /* 背景样式 */
         .background {
             position: fixed;
             top: 0;
@@ -127,7 +115,37 @@
             z-index: -1;
         }
         
-        /* 响应式调整 */
+        .image-placeholder {
+            width: 100%;
+            max-width: 320px;
+            height: 180px;
+            border-radius: 16px;
+            margin: 0 auto 25px;
+            background: linear-gradient(135deg, #FF9E5E, #FF7A19);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border: 3px solid white;
+        }
+        
+        .avatar-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            background: linear-gradient(135deg, #FF9E5E, #FF7A19);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
         @media (max-width: 480px) {
             .container {
                 padding: 0 15px;
@@ -153,30 +171,88 @@
     </style>
 </head>
 <body>
-    <!-- 背景 -->
     <div class="background"></div>
     
-    <!-- 主要内容 -->
     <div class="container">
-        <!-- 头像 -->
-        <img src="images/1.jpg" alt="Profile picture" class="avatar">
+        <!-- 头像 - 使用 images 文件夹中的图片 -->
+        <div class="avatar-placeholder">
+            <img src="images/1.jpg" alt="Profile" class="avatar" onerror="handleImageError(this, 'avatar')">
+            <span style="display:none;">MA</span>
+        </div>
         
-        <!-- 标题和描述 -->
         <h1 class="title">macao99</h1>
         <p class="subtitle">My private video space</p>
         
-        <!-- 矩形图片 -->
-        <img src="images/2.jpg" alt="Featured content" class="rectangle-image">
+        <!-- 内容图片 - 使用 images 文件夹中的图片 -->
+        <div class="image-placeholder">
+            <img src="images/2.jpg" alt="Content" class="rectangle-image" onerror="handleImageError(this, 'content')">
+            <span style="display:none;">Featured</span>
+        </div>
         
-        <!-- 链接按钮 -->
         <div class="links">
             <a href="https://y29v.com/l/0ZGawsyM" class="link-button" target="_blank">Explore Content</a>
         </div>
         
-        <!-- 页脚 -->
         <div class="footer">
             © 2023 macao99. All rights reserved.
         </div>
     </div>
+
+    <script>
+        // 图片错误处理函数
+        function handleImageError(img, type) {
+            console.log(`${type} image failed to load:`, img.src);
+            const placeholder = img.closest(type === 'avatar' ? '.avatar-placeholder' : '.image-placeholder');
+            if (placeholder) {
+                placeholder.querySelector('span').style.display = 'block';
+                img.style.display = 'none';
+            }
+            
+            // 尝试备用图片路径
+            setTimeout(() => {
+                const fileName = img.src.split('/').pop();
+                img.src = `./images/${fileName}`; // 尝试相对路径
+            }, 100);
+        }
+        
+        // 图片加载成功处理
+        function handleImageLoad(img, type) {
+            console.log(`${type} image loaded successfully:`, img.src);
+            const placeholder = img.closest(type === 'avatar' ? '.avatar-placeholder' : '.image-placeholder');
+            if (placeholder) {
+                placeholder.querySelector('span').style.display = 'none';
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // 设置图片加载事件
+            const avatarImg = document.querySelector('.avatar');
+            const contentImg = document.querySelector('.rectangle-image');
+            
+            if (avatarImg) {
+                avatarImg.onload = () => handleImageLoad(avatarImg, 'avatar');
+                // 如果图片已经加载完成（缓存）
+                if (avatarImg.complete) {
+                    handleImageLoad(avatarImg, 'avatar');
+                }
+            }
+            
+            if (contentImg) {
+                contentImg.onload = () => handleImageLoad(contentImg, 'content');
+                // 如果图片已经加载完成（缓存）
+                if (contentImg.complete) {
+                    handleImageLoad(contentImg, 'content');
+                }
+            }
+            
+            // 调试信息
+            console.log('Current file structure:');
+            console.log('- index.html');
+            console.log('- images/');
+            console.log('  - 1.jpg (avatar)');
+            console.log('  - 2.jpg (content)');
+            console.log('  - ... other numbered images');
+        });
+    </script>
 </body>
 </html>

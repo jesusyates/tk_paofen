@@ -52,7 +52,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none; /* 默认隐藏，等加载成功后再显示 */
+            display: none;
         }
         
         .title {
@@ -92,7 +92,7 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none; /* 默认隐藏，等加载成功后再显示 */
+            display: none;
         }
         
         .links {
@@ -195,7 +195,7 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // 图片路径配置
+            // 图片路径配置 - 使用正确的文件名 111.jpg 和 222.jpg
             const imageConfig = {
                 avatar: {
                     container: document.getElementById('avatarContainer'),
@@ -269,5 +269,3 @@
     </script>
 </body>
 </html>
-
-

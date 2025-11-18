@@ -52,7 +52,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
         }
         
         .title {
@@ -92,7 +91,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            display: none;
         }
         
         .links {
@@ -141,6 +139,15 @@
             z-index: -1;
         }
         
+        .debug-info {
+            background: rgba(0,0,0,0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: white;
+        }
+        
         @media (max-width: 480px) {
             .container {
                 padding: 0 15px;
@@ -171,8 +178,8 @@
     <div class="container">
         <!-- 头像容器 -->
         <div class="avatar-container" id="avatarContainer">
-            <span id="avatarText">Avatar</span>
-            <img src="" alt="Profile" class="avatar" id="avatarImg">
+            <span id="avatarText">Loading Avatar...</span>
+            <img src="images/111.jpg" alt="Profile" class="avatar" id="avatarImg" onerror="handleImageError('avatar', this.src)">
         </div>
         
         <h1 class="title">macao99</h1>
@@ -180,12 +187,17 @@
         
         <!-- 内容图片容器 -->
         <div class="image-container" id="imageContainer">
-            <span id="imageText">Featured</span>
-            <img src="" alt="Content" class="rectangle-image" id="contentImg">
+            <span id="imageText">Loading Content...</span>
+            <img src="images/222.jpg" alt="Content" class="rectangle-image" id="contentImg" onerror="handleImageError('content', this.src)">
         </div>
         
         <div class="links">
             <a href="https://y29v.com/l/0ZGawsyM" class="link-button" target="_blank">Explore Content</a>
+        </div>
+        
+        <!-- 调试信息 -->
+        <div class="debug-info" id="debugInfo">
+            Loading images... Please check browser console (F12) for details.
         </div>
         
         <div class="footer">
@@ -194,77 +206,91 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // 图片路径配置 - 使用正确的文件名 111.jpg 和 222.jpg
-            const imageConfig = {
-                avatar: {
-                    container: document.getElementById('avatarContainer'),
-                    img: document.getElementById('avatarImg'),
-                    text: document.getElementById('avatarText'),
-                    paths: [
-                        'images/111.jpg',
-                        './images/111.jpg',
-                        '111.jpg',
-                        './111.jpg'
-                    ]
-                },
-                content: {
-                    container: document.getElementById('imageContainer'),
-                    img: document.getElementById('contentImg'),
-                    text: document.getElementById('imageText'),
-                    paths: [
-                        'images/222.jpg',
-                        './images/222.jpg',
-                        '222.jpg',
-                        './222.jpg'
-                    ]
-                }
-            };
+        let debugInfo = '';
+        
+        function logDebug(message) {
+            console.log(message);
+            debugInfo += message + '\n';
+            document.getElementById('debugInfo').textContent = debugInfo;
+        }
+        
+        function handleImageError(type, src) {
+            logDebug(`❌ ${type.toUpperCase()} image failed: ${src}`);
+            logDebug(`   Status: ${this.status || 'Unknown'}`);
             
-            // 加载图片函数
-            function loadImage(imageType) {
-                const config = imageConfig[imageType];
-                let currentPathIndex = 0;
-                
-                function tryNextPath() {
-                    if (currentPathIndex >= config.paths.length) {
-                        console.log(`All paths failed for ${imageType} image`);
-                        // 所有路径都失败，显示占位文本
-                        config.text.style.display = 'block';
-                        config.img.style.display = 'none';
-                        return;
-                    }
-                    
-                    const path = config.paths[currentPathIndex];
-                    console.log(`Trying to load ${imageType} image from: ${path}`);
-                    
-                    config.img.src = path;
-                    config.img.onload = function() {
-                        console.log(`Successfully loaded ${imageType} image from: ${path}`);
-                        config.text.style.display = 'none';
-                        config.img.style.display = 'block';
-                    };
-                    
-                    config.img.onerror = function() {
-                        console.log(`Failed to load ${imageType} image from: ${path}`);
-                        currentPathIndex++;
-                        setTimeout(tryNextPath, 100);
-                    };
-                }
-                
-                tryNextPath();
+            // 显示占位符
+            if (type === 'avatar') {
+                document.getElementById('avatarText').textContent = 'Avatar Not Found';
+            } else {
+                document.getElementById('imageText').textContent = 'Content Not Found';
             }
             
-            // 加载两张图片
-            loadImage('avatar');
-            loadImage('content');
+            // 尝试其他可能的文件名
+            setTimeout(() => tryAlternativeNames(type), 1000);
+        }
+        
+        function tryAlternativeNames(type) {
+            const alternatives = type === 'avatar' 
+                ? ['111.JPG', '111.jpeg', '111.png', '1.jpg', '1.JPG'] 
+                : ['222.JPG', '222.jpeg', '222.png', '2.jpg', '2.JPG'];
+                
+            logDebug(`🔄 Trying alternative names for ${type}: ${alternatives.join(', ')}`);
             
-            // 调试：输出当前目录结构
-            console.log('Expected file structure:');
-            console.log('├── index.html');
-            console.log('└── images/');
-            console.log('    ├── 111.jpg');
-            console.log('    └── 222.jpg');
+            alternatives.forEach((filename, index) => {
+                setTimeout(() => {
+                    const testImg = new Image();
+                    testImg.onload = function() {
+                        logDebug(`✅ Found ${type} image: images/${filename}`);
+                        // 更新实际显示的图片
+                        if (type === 'avatar') {
+                            document.getElementById('avatarImg').src = `images/${filename}`;
+                            document.getElementById('avatarText').textContent = 'Avatar Loaded!';
+                        } else {
+                            document.getElementById('contentImg').src = `images/${filename}`;
+                            document.getElementById('imageText').textContent = 'Content Loaded!';
+                        }
+                    };
+                    testImg.onerror = function() {
+                        logDebug(`❌ Not found: images/${filename}`);
+                    };
+                    testImg.src = `images/${filename}`;
+                }, index * 500);
+            });
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            logDebug('🚀 Page loaded, starting image detection...');
+            logDebug('📁 Expected structure:');
+            logDebug('   ├── index.html');
+            logDebug('   └── images/');
+            logDebug('       ├── 111.jpg (avatar)');
+            logDebug('       └── 222.jpg (content)');
+            
+            // 检查图片加载状态
+            const avatarImg = document.getElementById('avatarImg');
+            const contentImg = document.getElementById('contentImg');
+            
+            avatarImg.onload = function() {
+                logDebug('✅ Avatar image loaded successfully!');
+                document.getElementById('avatarText').style.display = 'none';
+            };
+            
+            contentImg.onload = function() {
+                logDebug('✅ Content image loaded successfully!');
+                document.getElementById('imageText').style.display = 'none';
+            };
+            
+            // 如果图片很快加载失败，自动开始备选方案
+            setTimeout(() => {
+                if (avatarImg.naturalHeight === 0) {
+                    logDebug('⚠️ Avatar not loaded, starting alternative search...');
+                    tryAlternativeNames('avatar');
+                }
+                if (contentImg.naturalHeight === 0) {
+                    logDebug('⚠️ Content not loaded, starting alternative search...');
+                    tryAlternativeNames('content');
+                }
+            }, 2000);
         });
     </script>
 </body>

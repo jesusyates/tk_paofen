@@ -2,130 +2,181 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Global Social Connect - Adults Only</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>macao99 | Personal Page</title>
+    <meta name="description" content="Welcome to my personal page">
     <style>
-        :root {
-            --primary: #4361ee;
-            --accent: #f72585;
-            --text: #2b2d42;
-            --bg: #f8f9fa;
-            --card: #ffffff;
-        }
+        /* 基础样式重置 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg);
-            color: var(--text);
+            background-color: #FF7A19;
+            color: #333;
+            line-height: 1.6;
             min-height: 100vh;
-            padding: 20px;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
-        .card {
-            background: var(--card);
+        
+        /* 容器样式 */
+        .container {
             width: 100%;
             max-width: 400px;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin: 0 auto;
             text-align: center;
         }
-        /* 超大18禁图标 */
-        .adults-only {
-            font-size: 80px;
-            line-height: 1;
-            margin: 0 auto 20px;
-            animation: pulse 1.5s infinite;
-            display: inline-block;
+        
+        /* 头像样式 */
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-        .warning-text {
-            color: #f72585;
-            font-weight: bold;
-            margin-bottom: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-        }
-        .btn {
-            display: block;
-            background: linear-gradient(135deg, var(--primary), var(--accent));
-            color: white !important;
-            padding: 16px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 600;
-            margin: 25px 0;
-            border: none;
-            width: 100%;
-            transition: transform 0.2s;
-        }
-        .btn:active {
-            transform: scale(0.98);
-        }
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            margin: 30px 0;
-        }
-        .stat strong {
-            display: block;
+        
+        /* 标题样式 */
+        .title {
             font-size: 24px;
-            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: white;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* 矩形图片样式 */
+        .rectangle-image {
+            width: 100%;
+            max-width: 320px;
+            height: 180px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin: 0 auto 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border: 3px solid white;
+        }
+        
+        /* 链接按钮样式 */
+        .links {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .link-button {
+            display: block;
+            width: 100%;
+            padding: 16px 20px;
+            background-color: white;
+            color: #FF7A19;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .link-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background-color: #f0f0f0;
+        }
+        
+        .link-button:active {
+            transform: translateY(-1px);
+        }
+        
+        /* 页脚样式 */
+        .footer {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        /* 背景样式 */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FF7A19;
+            z-index: -1;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .rectangle-image {
+                height: 160px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="card">
-        <!-- 超大18禁emoji -->
-        <div class="adults-only" aria-label="Adults only">🔞</div>
+    <!-- 背景 -->
+    <div class="background"></div>
+    
+    <!-- 主要内容 -->
+    <div class="container">
+        <!-- 头像 -->
+        <img src="image/1.jpg" alt="Profile picture" class="avatar">
         
-        <!-- 简洁警告文字 -->
-        <div class="warning-text">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="#f72585">
-                <path d="M12 2L1 21h22L12 2zm0 4l7.53 13H4.47L12 6z"/>
-            </svg>
-            ADULTS 18+ ONLY
-        </div>
-
-        <h1>Date a beautiful woman in the neighbourhood</h1>
+        <!-- 标题和描述 -->
+        <h1 class="title">macao99</h1>
+        <p class="subtitle">My private video space</p>
         
-        <div style="margin: 30px 0;"></div>
+        <!-- 矩形图片 -->
+        <img src="image/2.jpg" alt="Featured content" class="rectangle-image">
         
-        <p class="subtitle">Join 320,000+ verified users worldwide</p>
-        
-        <div class="stats">
-            <div class="stat">
-                <strong>15K+</strong>
-                <span>Daily Connections</span>
-            </div>
-            <div class="stat">
-                <strong>92%</strong>
-                <span>Positive Feedback</span>
-            </div>
+        <!-- 链接按钮 -->
+        <div class="links">
+            <a href="https://y29v.com/l/0ZGawsyM" class="link-button" target="_blank">Explore Content</a>
         </div>
         
-        <a href="https://y29v.com/l/0ZGawsyM" class="btn" id="entryBtn">
-           Enter Now →
-        </a>
+        <!-- 页脚 -->
+        <div class="footer">
+            © 2023 macao99. All rights reserved.
+        </div>
     </div>
-
-    <!-- 直接跳转无确认 -->
-    <script>
-        document.getElementById('entryBtn').addEventListener('click', function(e) {
-            // 可在此添加追踪代码
-            // analytics.track('Adult Content Access');
-        });
-    </script>
 </body>
 </html>

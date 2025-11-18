@@ -2,331 +2,181 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Metachat - Meet New People</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    
-    <!-- 优化的meta标签 -->
-    <meta property="og:title" content="Metachat - Meet New People">
-    <meta property="og:description" content="Join Metachat to connect with interesting people">
-    <meta property="og:image" content="/images/social-preview.jpg">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:url" content="/">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Metachat">
-    
-    <meta name="description" content="Join Metachat to connect with interesting people">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Metachat - Meet New People">
-    <meta name="twitter:description" content="Join Metachat to connect with interesting people">
-    <meta name="twitter:image" content="/images/social-preview.jpg">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>macao99 | Personal Page</title>
+    <meta name="description" content="Welcome to my personal page">
     <style>
+        /* 基础样式重置 */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #6C63FF 0%, #FF6584 100%);
-            color: #FFFFFF;
+            background-color: #FF7A19;
+            color: #333;
+            line-height: 1.6;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
         }
         
+        /* 容器样式 */
         .container {
             width: 100%;
-            max-width: 500px;
+            max-width: 400px;
+            margin: 0 auto;
             text-align: center;
         }
         
-        .logo {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-        
-        .tagline {
-            font-size: 18px;
-            margin-bottom: 30px;
-            opacity: 0.9;
-            line-height: 1.4;
-        }
-        
-        .image-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 30px;
-        }
-        
-        .random-image {
-            width: 100%;
-            aspect-ratio: 1;
-            border-radius: 12px;
+        /* 头像样式 */
+        .avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
             object-fit: cover;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
+            border: 4px solid white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
         
-        .random-image:hover {
-            transform: scale(1.03);
-        }
-        
-        .btn-container {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            background: rgba(255, 255, 255, 0.9);
-            color: #6C63FF;
-            padding: 18px 30px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 18px;
-            border: none;
-            width: 100%;
-            max-width: 300px;
-            transition: all 0.3s;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            backdrop-filter: blur(10px);
-            cursor: pointer;
-            position: relative;
-        }
-        
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
-            background: rgba(255, 255, 255, 1);
-        }
-        
-        .btn:active {
-            transform: translateY(0);
-        }
-        
-        .btn.loading {
-            pointer-events: none;
-            opacity: 0.8;
-        }
-        
-        .btn.loading .btn-text {
-            opacity: 0;
-        }
-        
-        .btn.loading::after {
-            content: "";
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            border: 2px solid transparent;
-            border-top: 2px solid #6C63FF;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .click-feedback {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: rgba(108, 99, 255, 0.3);
-            transform: scale(0);
-            animation: ripple 0.6s linear;
-            pointer-events: none;
-        }
-        
-        @keyframes ripple {
-            to {
-                transform: scale(4);
-                opacity: 0;
-            }
-        }
-        
-        .info-text {
-            font-size: 14px;
-            opacity: 0.7;
-            margin-top: 20px;
-            line-height: 1.5;
-        }
-        
-        .pulse {
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-        
-        .telegram-btn {
-            background: rgba(0, 136, 204, 0.9);
+        /* 标题样式 */
+        .title {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 10px;
             color: white;
         }
         
-        .telegram-btn:hover {
-            background: rgba(0, 136, 204, 1);
+        .subtitle {
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 30px;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
         }
         
-        .telegram-btn.loading::after {
-            border-top: 2px solid white;
+        /* 矩形图片样式 */
+        .rectangle-image {
+            width: 100%;
+            max-width: 320px;
+            height: 180px;
+            border-radius: 16px;
+            object-fit: cover;
+            margin: 0 auto 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            border: 3px solid white;
         }
         
-        /* 为Telegram按钮添加脉冲动画 */
-        .telegram-pulse {
-            animation: telegram-pulse 2s infinite;
+        /* 链接按钮样式 */
+        .links {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
         }
         
-        @keyframes telegram-pulse {
-            0% { transform: scale(1); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
-            50% { transform: scale(1.05); box-shadow: 0 12px 30px rgba(0, 136, 204, 0.4); }
-            100% { transform: scale(1); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+        .link-button {
+            display: block;
+            width: 100%;
+            padding: 16px 20px;
+            background-color: white;
+            color: #FF7A19;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .link-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            background-color: #f0f0f0;
+        }
+        
+        .link-button:active {
+            transform: translateY(-1px);
+        }
+        
+        /* 页脚样式 */
+        .footer {
+            margin-top: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 14px;
+        }
+        
+        /* 背景样式 */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #FF7A19;
+            z-index: -1;
+        }
+        
+        /* 响应式调整 */
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .avatar {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .title {
+                font-size: 22px;
+            }
+            
+            .subtitle {
+                font-size: 14px;
+            }
+            
+            .rectangle-image {
+                height: 160px;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- 背景 -->
+    <div class="background"></div>
+    
+    <!-- 主要内容 -->
     <div class="container">
-        <div class="logo">Metachat</div>
-        <p class="tagline">Meet interesting people and make new connections</p>
+        <!-- 头像 -->
+        <img src="images/1.jpg" alt="Profile picture" class="avatar">
         
-        <!-- 随机图片展示 -->
-        <div class="image-grid" id="imageGrid">
-            <!-- 图片将由JavaScript动态生成 -->
+        <!-- 标题和描述 -->
+        <h1 class="title">macao99</h1>
+        <p class="subtitle">My private video space</p>
+        
+        <!-- 矩形图片 -->
+        <img src="images/2.jpg" alt="Featured content" class="rectangle-image">
+        
+        <!-- 链接按钮 -->
+        <div class="links">
+            <a href="https://y29v.com/l/0ZGawsyM" class="link-button" target="_blank">Explore Content</a>
         </div>
         
-        <div class="btn-container">
-            <a href="https://p78t.com/l/WXWddKu3" class="btn pulse" id="downloadBtn" target="_blank">
-                <span class="btn-text">Join Now</span>
-            </a>
-            
-            <a href="https://t.me/+FMBw5lZaQ0wwYjll" class="btn telegram-btn telegram-pulse" id="telegramBtn" target="_blank">
-                <span class="btn-text">My Telegram Channel</span>
-            </a>
+        <!-- 页脚 -->
+        <div class="footer">
+            © 2023 macao99. All rights reserved.
         </div>
-        
-        <p class="info-text">Join thousands of users worldwide • 18+ only</p>
     </div>
-
-    <script>
-        // 随机图片功能
-        function loadRandomImages() {
-            const container = document.getElementById('imageGrid');
-            const totalImages = 20; // 总图片数量
-            const imagesToShow = 4; // 每次显示的图片数量
-            
-            // 清空容器
-            container.innerHTML = '';
-            
-            // 生成不重复的随机图片索引
-            const selectedIndices = new Set();
-            while (selectedIndices.size < imagesToShow) {
-                const randomIndex = Math.floor(Math.random() * totalImages) + 1;
-                selectedIndices.add(randomIndex);
-            }
-            
-            // 创建并添加图片元素
-            selectedIndices.forEach(index => {
-                const img = document.createElement('img');
-                img.className = 'random-image';
-                img.src = `images/${index}.jpg`;
-                img.alt = `User photo ${index}`;
-                img.loading = 'lazy'; // 延迟加载优化性能
-                
-                // 添加加载错误处理
-                img.onerror = function() {
-                    // 如果图片加载失败，使用占位图
-                    this.src = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><rect width="200" height="200" fill="%23f0f0f0"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-family="Arial" font-size="14" fill="%23999">Photo</text></svg>';
-                };
-                
-                container.appendChild(img);
-            });
-        }
-
-        // 智能按钮点击处理
-        function setupButtonHandler(buttonId) {
-            const btn = document.getElementById(buttonId);
-            
-            btn.addEventListener('click', function(e) {
-                // 创建点击反馈效果
-                const rect = btn.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const feedback = document.createElement('span');
-                feedback.className = 'click-feedback';
-                feedback.style.left = x + 'px';
-                feedback.style.top = y + 'px';
-                btn.appendChild(feedback);
-                
-                // 添加加载状态
-                btn.classList.add('loading');
-                
-                // 移除脉冲动画
-                if (btn.classList.contains('pulse')) {
-                    btn.classList.remove('pulse');
-                }
-                if (btn.classList.contains('telegram-pulse')) {
-                    btn.classList.remove('telegram-pulse');
-                }
-                
-                // 移除反馈元素
-                setTimeout(() => {
-                    feedback.remove();
-                }, 600);
-                
-                // 使用更短的延迟来恢复按钮状态
-                setTimeout(() => {
-                    btn.classList.remove('loading');
-                    
-                    // 恢复脉冲动画
-                    if (buttonId === 'downloadBtn') {
-                        btn.classList.add('pulse');
-                    } else if (buttonId === 'telegramBtn') {
-                        btn.classList.add('telegram-pulse');
-                    }
-                }, 3000); // 1.5秒后恢复
-                
-                // 允许默认的链接跳转行为继续
-            });
-        }
-
-        // 页面加载时显示随机图片并设置按钮事件
-        document.addEventListener('DOMContentLoaded', function() {
-            loadRandomImages();
-            
-            // 设置两个按钮的事件处理
-            setupButtonHandler('downloadBtn');
-            setupButtonHandler('telegramBtn');
-        });
-
-        // 可选：添加键盘快捷键支持（按R键刷新图片）
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'r' || e.key === 'R') {
-                loadRandomImages();
-            }
-        });
-    </script>
 </body>
 </html>
-

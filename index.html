@@ -182,7 +182,7 @@
     
         <!-- 视频容器 -->
         <div class="video-container">
-            <video class="video-player" controls poster="images/2.jpg">
+            <video class="video-player" autoplay loop muted playsinline>
                 <source src="images/2.mp4" type="video/mp4">
                 Your browser does not support the video tag.
             </video>
@@ -202,5 +202,15 @@
             © 2025 Elena. All rights reserved.
         </div>
     </div>
+
+    <script>
+        // 确保视频自动播放
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.video-player');
+            video.play().catch(function(error) {
+                console.log('Auto-play was prevented:', error);
+            });
+        });
+    </script>
 </body>
 </html>
